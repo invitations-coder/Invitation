@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f4ef">
 
   <title>Անի և Գուրգեն | Հարսանյաց հրավիրատոմս</title>
 
@@ -15,435 +14,821 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="./style.css">
-  <script src="./script.js" defer></script>
+  <style>
+    :root {
+      --paper: #f7f4ef;
+      --cream: #ebe5dc;
+      --text: #292725;
+      --accent: #938679;
+      --white: #ffffff;
+      --line: #c9bfb3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Sans Armenian", sans-serif;
+      background: var(--paper);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: "Noto Serif Armenian", serif;
+      font-weight: 400;
+    }
+
+    section {
+      padding: 80px 20px;
+    }
+
+    .container {
+      width: min(100%, 800px);
+      margin: auto;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .section-label {
+      margin-bottom: 16px;
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(34px, 6vw, 58px);
+      line-height: 1.2;
+    }
+
+    .decorative-line {
+      width: 140px;
+      height: 1px;
+      background: var(--line);
+      margin: 26px auto 34px;
+    }
+
+    /* COVER */
+
+    #cover {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 24px;
+      text-align: center;
+      color: white;
+
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.22),
+          rgba(0, 0, 0, 0.58)
+        ),
+        url("./hero.jpg") center / cover no-repeat;
+
+      transition: opacity 0.7s ease;
+    }
+
+    #cover.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cover-card {
+      width: min(100%, 540px);
+      padding: 46px 24px;
+
+      border: 1px solid rgba(255,255,255,0.7);
+      background: rgba(0,0,0,0.12);
+      backdrop-filter: blur(3px);
+    }
+
+    .cover-small {
+      margin-bottom: 22px;
+      font-size: 12px;
+      letter-spacing: 4px;
+    }
+
+    .cover-name {
+      font-family: "Noto Serif Armenian", serif;
+      font-size: clamp(54px, 12vw, 92px);
+      line-height: 1;
+    }
+
+    .cover-and {
+      margin: 12px 0;
+      font-family: "Noto Serif Armenian", serif;
+      font-size: 28px;
+    }
+
+    #openBtn {
+      margin-top: 34px;
+      padding: 15px 28px;
+
+      border: 1px solid white;
+      background: transparent;
+      color: white;
+
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    #openBtn:hover {
+      background: white;
+      color: #222;
+    }
+
+    /* MUSIC */
+
+    #musicBtn {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 8000;
+
+      width: 50px;
+      height: 50px;
+
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.15);
+
+      background: rgba(255,255,255,0.9);
+      color: #222;
+
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #musicBtn.playing {
+      animation: spin 5s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      padding: 75px 20px;
+      text-align: center;
+      color: white;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.05),
+          rgba(0,0,0,0.12) 40%,
+          rgba(0,0,0,0.62)
+        ),
+        url("./photo2.jpg") center 30% / cover no-repeat;
+    }
+
+    .hero-date {
+      margin-bottom: 20px;
+      font-size: 13px;
+      letter-spacing: 5px;
+    }
+
+    .hero h1 {
+      font-size: clamp(58px, 13vw, 98px);
+      line-height: 0.95;
+    }
+
+    .hero-and {
+      margin: 12px 0;
+      font-family: "Noto Serif Armenian", serif;
+      font-size: 30px;
+    }
+
+    /* INVITATION */
+
+    .invitation {
+      background: white;
+    }
+
+    .invitation p {
+      max-width: 650px;
+      margin: 0 auto 20px;
+      font-family: "Noto Serif Armenian", serif;
+      font-size: 18px;
+      line-height: 2;
+    }
+
+    /* PHOTO */
+
+    .photo-section {
+      min-height: 75vh;
+      background:
+        linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.18)),
+        url("./photo3.jpg") center / cover no-repeat;
+    }
+
+    /* DETAILS */
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .card {
+      min-height: 320px;
+      padding: 38px 24px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+      background: white;
+      border: 1px solid #ddd4ca;
+    }
+
+    .time {
+      margin-bottom: 14px;
+      font-family: "Noto Serif Armenian", serif;
+      font-size: 30px;
+    }
+
+    .card h3 {
+      margin-bottom: 14px;
+      font-size: 24px;
+    }
+
+    .card p {
+      line-height: 1.8;
+    }
+
+    .map-btn {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 13px 20px;
+
+      border: 1px solid var(--text);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .map-btn:hover {
+      background: var(--text);
+      color: white;
+    }
+
+    /* TIMELINE */
+
+    .timeline-section {
+      background: white;
+    }
+
+    .timeline {
+      max-width: 600px;
+      margin: 45px auto 0;
+    }
+
+    .timeline-row {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .timeline-time {
+      font-family: "Noto Serif Armenian", serif;
+      font-size: 28px;
+      margin-bottom: 7px;
+    }
+
+    /* DRESS CODE */
+
+    .dress {
+      background: var(--cream);
+    }
+
+    .dress p {
+      max-width: 650px;
+      margin: auto;
+      font-family: "Noto Serif Armenian", serif;
+      line-height: 2;
+    }
+
+    .colors {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .color {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 5px 16px rgba(0,0,0,0.12);
+    }
+
+    /* COUNTDOWN */
+
+    .countdown-section {
+      color: white;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,0.5),
+          rgba(0,0,0,0.6)
+        ),
+        url("./photo4.jpg") center / cover no-repeat;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 38px;
+    }
+
+    .count-box {
+      padding: 22px 8px;
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .count-num {
+      display: block;
+      font-family: "Noto Serif Armenian", serif;
+      font-size: clamp(30px, 7vw, 48px);
+    }
+
+    .count-label {
+      font-size: 12px;
+    }
+
+    /* RSVP */
+
+    .rsvp {
+      background: white;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 38px auto 0;
+    }
+
+    label {
+      display: block;
+      margin: 22px 0 8px;
+      font-family: "Noto Serif Armenian", serif;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 4px;
+
+      border: none;
+      border-bottom: 1px solid #777;
+      background: transparent;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 90px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 28px;
+      padding: 16px 20px;
+
+      border: 1px solid var(--text);
+      background: var(--text);
+      color: white;
+
+      cursor: pointer;
+    }
+
+    footer {
+      padding: 38px 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 680px) {
+      section {
+        padding: 65px 18px;
+      }
+
+      .details-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        background-position: 52% center;
+      }
+
+      .photo-section {
+        min-height: 62vh;
+      }
+
+      .countdown-grid {
+        gap: 5px;
+      }
+
+      .count-box {
+        padding: 17px 3px;
+      }
+
+      .count-label {
+        font-size: 10px;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="locked">
 
-  <audio id="bgMusic" loop preload="auto">
+  <audio id="music" loop preload="auto">
     <source src="./music.mp3" type="audio/mpeg">
   </audio>
 
-  <div id="invitationCover" class="invitation-cover">
+  <div id="cover">
+    <div class="cover-card">
 
-    <div class="cover-overlay"></div>
-
-    <div class="cover-content">
-
-      <p class="cover-small">
+      <div class="cover-small">
         ԴՈՒՔ ՍՏԱՑԵԼ ԵՔ ՀՐԱՎԻՐԱՏՈՄՍ
-      </p>
+      </div>
 
-      <h1 class="cover-name">Անի</h1>
+      <div class="cover-name">Անի</div>
+      <div class="cover-and">և</div>
+      <div class="cover-name">Գուրգեն</div>
 
-      <p class="cover-and">և</p>
-
-      <h1 class="cover-name">Գուրգեն</h1>
-
-      <button id="openInvitation" class="open-button">
+      <button id="openBtn" type="button">
         ԲԱՑԵԼ ՀՐԱՎԻՐԱՏՈՄՍԸ
       </button>
 
     </div>
   </div>
 
-  <button
-    id="musicButton"
-    class="music-button"
-    type="button"
-    aria-label="Միացնել կամ անջատել երաժշտությունը"
-  >
-    ♪
-  </button>
+  <button id="musicBtn" type="button">♪</button>
 
   <header class="hero">
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-      <p class="hero-date">
-        11 • 08 • 2026
-      </p>
-
+    <div>
+      <div class="hero-date">11 • 08 • 2026</div>
       <h1>Անի</h1>
-
-      <p class="hero-and">և</p>
-
+      <div class="hero-and">և</div>
       <h1>Գուրգեն</h1>
-
     </div>
-
-    <a href="#invitation" class="scroll-indicator" aria-label="Իջնել ներքև">
-      <span></span>
-    </a>
-
   </header>
 
-  <main>
+  <section class="invitation center">
+    <div class="container">
 
-    <section id="invitation" class="invitation-section">
-
-      <div class="container center reveal">
-
-        <p class="section-label">
-          Սիրելի՛ հյուրեր
-        </p>
-
-        <h2 class="section-title">
-          Մենք ամուսնանում ենք
-        </h2>
-
-        <div class="decorative-line">
-          <span>♡</span>
-        </div>
-
-        <p class="invitation-text">
-          Մենք ցանկանում ենք Ձեզ հետ կիսել մեր կյանքի կարևորագույն
-          և ամենագեղեցիկ օրերից մեկը։
-        </p>
-
-        <p class="invitation-text">
-          Մեծ սիրով հրավիրում ենք Ձեզ ներկա գտնվելու մեր հարսանյաց
-          հանդիսությանը և միասին ստեղծելու անմոռանալի հիշողություններ։
-        </p>
-
+      <div class="section-label">
+        Սիրելի՛ հյուրեր
       </div>
-    </section>
 
-    <section class="photo-section" aria-label="Անիի և Գուրգենի լուսանկարը">
-      <div class="photo-overlay"></div>
-    </section>
+      <h2 class="section-title">
+        Մենք ամուսնանում ենք
+      </h2>
 
-    <section class="details-section">
+      <div class="decorative-line"></div>
 
-      <div class="container reveal">
+      <p>
+        Մենք ցանկանում ենք Ձեզ հետ կիսել մեր կյանքի կարևորագույն
+        և ամենագեղեցիկ օրերից մեկը։
+      </p>
 
-        <div class="center">
+      <p>
+        Մեծ սիրով հրավիրում ենք Ձեզ ներկա գտնվելու մեր հարսանյաց
+        հանդիսությանը և միասին ստեղծելու անմոռանալի հիշողություններ։
+      </p>
 
-          <p class="section-label">
-            Տեղ և ժամ
+    </div>
+  </section>
+
+  <div class="photo-section"></div>
+
+  <section>
+    <div class="container">
+
+      <div class="center">
+        <div class="section-label">Տեղ և ժամ</div>
+        <h2 class="section-title">Մեր հատուկ օրը</h2>
+        <div class="decorative-line"></div>
+      </div>
+
+      <div class="details-grid">
+
+        <div class="card">
+          <div class="time">14։30</div>
+          <h3>Պսակադրություն</h3>
+
+          <p>
+            Կեչառիսի վանական համալիր
+            <br>
+            Ծաղկաձոր
           </p>
 
-          <h2 class="section-title">
-            Մեր հատուկ օրը
-          </h2>
-
-          <div class="decorative-line">
-            <span>✦</span>
-          </div>
-
-        </div>
-
-        <div class="details-grid">
-
-          <article class="detail-card">
-
-            <div class="detail-icon">♔</div>
-
-            <p class="detail-time">14։30</p>
-
-            <h3>Պսակադրություն</h3>
-
-            <p>
-              Կեչառիսի վանական համալիր
-              <br>
-              Ծաղկաձոր
-            </p>
-
-            <a
-              class="map-button"
-              href="https://www.google.com/maps/search/?api=1&query=Kecharis+Monastery+Tsaghkadzor"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Բացել քարտեզը
-            </a>
-
-          </article>
-
-          <article class="detail-card">
-
-            <div class="detail-icon">✦</div>
-
-            <p class="detail-time">17։30</p>
-
-            <h3>Հարսանյաց հանդես</h3>
-
-            <p>
-              Safari Hall
-              <br>
-              Չարենցավան
-            </p>
-
-            <a
-              class="map-button"
-              href="https://www.google.com/maps/search/?api=1&query=Safari+Hall+Charentsavan"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Բացել քարտեզը
-            </a>
-
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="timeline-section">
-
-      <div class="container reveal">
-
-        <div class="center">
-
-          <p class="section-label">
-            Օրվա ծրագիր
-          </p>
-
-          <h2 class="section-title">
-            Միասին անցկացնենք այս օրը
-          </h2>
-
-          <div class="decorative-line">
-            <span>♡</span>
-          </div>
-
-        </div>
-
-        <div class="timeline">
-
-          <div class="timeline-item">
-
-            <div class="timeline-content">
-              <p class="timeline-time">14։30</p>
-              <p>Պսակադրության արարողություն</p>
-            </div>
-
-            <div class="timeline-dot"></div>
-
-          </div>
-
-          <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-content">
-              <p class="timeline-time">17։30</p>
-              <p>Հյուրերի դիմավորում</p>
-            </div>
-
-          </div>
-
-          <div class="timeline-item">
-
-            <div class="timeline-content">
-              <p class="timeline-time">18։00</p>
-              <p>Հարսանեկան խնջույքի մեկնարկ</p>
-            </div>
-
-            <div class="timeline-dot"></div>
-
-          </div>
-
-          <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-content">
-              <p class="timeline-time">21։30</p>
-              <p>Տորթի կտրում</p>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <section class="dress-code-section">
-
-      <div class="container center reveal">
-
-        <p class="section-label">
-          Մանրուքներ
-        </p>
-
-        <h2 class="section-title">
-          Dress Code
-        </h2>
-
-        <div class="decorative-line">
-          <span>✦</span>
-        </div>
-
-        <p class="dress-code-text">
-          Մեզ համար ամենակարևորը Ձեր ներկայությունն է։ Ուրախ կլինենք,
-          եթե ընտրեք հանգիստ, դասական և բնական գունային երանգներ։
-          Խնդրում ենք թույլ տալ, որ այդ օրը սպիտակ զգեստով լինի միայն
-          հարսնացուն։
-        </p>
-
-        <div class="color-palette" aria-label="Dress code գունապնակ">
-
-          <span class="color-circle color-one"></span>
-          <span class="color-circle color-two"></span>
-          <span class="color-circle color-three"></span>
-          <span class="color-circle color-four"></span>
-          <span class="color-circle color-five"></span>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section class="countdown-section">
-
-      <div class="countdown-overlay"></div>
-
-      <div class="container center countdown-content reveal">
-
-        <p class="section-label light-label">
-          Մեր հարսանիքին մնացել է
-        </p>
-
-        <h2 class="section-title light-title">
-          Սպասում ենք Ձեզ
-        </h2>
-
-        <div class="countdown-grid">
-
-          <div class="countdown-box">
-            <span id="days" class="countdown-number">00</span>
-            <span class="countdown-label">օր</span>
-          </div>
-
-          <div class="countdown-box">
-            <span id="hours" class="countdown-number">00</span>
-            <span class="countdown-label">ժամ</span>
-          </div>
-
-          <div class="countdown-box">
-            <span id="minutes" class="countdown-number">00</span>
-            <span class="countdown-label">րոպե</span>
-          </div>
-
-          <div class="countdown-box">
-            <span id="seconds" class="countdown-number">00</span>
-            <span class="countdown-label">վայրկյան</span>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <section class="rsvp-section">
-
-      <div class="container reveal">
-
-        <div class="center">
-
-          <p class="section-label">
-            Հարցաթերթիկ
-          </p>
-
-          <h2 class="section-title">
-            Կկարողանա՞ք ներկա գտնվել
-          </h2>
-
-          <div class="decorative-line">
-            <span>♡</span>
-          </div>
-
-          <p class="rsvp-intro">
-            Խնդրում ենք նախապես հաստատել Ձեր մասնակցությունը։
-          </p>
-
-        </div>
-
-        <form id="rsvpForm" class="rsvp-form">
-
-          <label for="guestName">
-            Ձեր անունը և ազգանունը
-          </label>
-
-          <input
-            id="guestName"
-            type="text"
-            placeholder="Օրինակ՝ Անի Սարգսյան"
-            required
+          <a
+            class="map-btn"
+            href="https://www.google.com/maps/search/?api=1&query=Kecharis+Monastery+Tsaghkadzor"
+            target="_blank"
           >
+            Բացել քարտեզը
+          </a>
+        </div>
 
-          <label for="attendance">
-            Կկարողանա՞ք ներկա գտնվել
-          </label>
+        <div class="card">
+          <div class="time">17։30</div>
+          <h3>Հարսանյաց հանդես</h3>
 
-          <select id="attendance" required>
+          <p>
+            Safari Hall
+            <br>
+            Չարենցավան
+          </p>
 
-            <option value="">
-              Ընտրեք տարբերակը
-            </option>
-
-            <option value="Այո, սիրով կմասնակցեմ">
-              Այո, սիրով կմասնակցեմ
-            </option>
-
-            <option value="Ցավոք, չեմ կարողանա մասնակցել">
-              Ցավոք, չեմ կարողանա մասնակցել
-            </option>
-
-          </select>
-
-          <label for="guestCount">
-            Հյուրերի քանակը
-          </label>
-
-          <select id="guestCount" required>
-
-            <option value="">
-              Ընտրեք քանակը
-            </option>
-
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-
-          </select>
-
-          <label for="guestNames">
-            Մասնակիցների անունները
-          </label>
-
-          <textarea
-            id="guestNames"
-            placeholder="Գրեք բոլոր մասնակիցների անունները"
-          ></textarea>
-
-          <button class="submit-button" type="submit">
-            Ուղարկել պատասխանը WhatsApp-ով
-          </button>
-
-        </form>
+          <a
+            class="map-btn"
+            href="https://www.google.com/maps/search/?api=1&query=Safari+Hall+Charentsavan"
+            target="_blank"
+          >
+            Բացել քարտեզը
+          </a>
+        </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+  <section class="timeline-section">
+    <div class="container center">
 
-  <footer class="footer">
+      <div class="section-label">Օրվա ծրագիր</div>
+      <h2 class="section-title">Միասին անցկացնենք այս օրը</h2>
+      <div class="decorative-line"></div>
 
-    <p class="footer-names">
-      Սիրով՝ Անի և Գուրգեն
-    </p>
+      <div class="timeline">
 
-    <p class="footer-date">
-      11 օգոստոսի 2026
-    </p>
+        <div class="timeline-row">
+          <div class="timeline-time">14։30</div>
+          <div>Պսակադրության արարողություն</div>
+        </div>
 
+        <div class="timeline-row">
+          <div class="timeline-time">17։30</div>
+          <div>Հյուրերի դիմավորում</div>
+        </div>
+
+        <div class="timeline-row">
+          <div class="timeline-time">18։00</div>
+          <div>Հարսանեկան խնջույքի մեկնարկ</div>
+        </div>
+
+        <div class="timeline-row">
+          <div class="timeline-time">21։30</div>
+          <div>Տորթի կտրում</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="dress center">
+    <div class="container">
+
+      <div class="section-label">Մանրուքներ</div>
+      <h2 class="section-title">Dress Code</h2>
+      <div class="decorative-line"></div>
+
+      <p>
+        Մեզ համար ամենակարևորը Ձեր ներկայությունն է։ Ուրախ կլինենք,
+        եթե ընտրեք հանգիստ, դասական և բնական գունային երանգներ։
+        Խնդրում ենք թույլ տալ, որ այդ օրը սպիտակ զգեստով լինի միայն
+        հարսնացուն։
+      </p>
+
+      <div class="colors">
+        <span class="color" style="background:#ece8e1"></span>
+        <span class="color" style="background:#d1c6b8"></span>
+        <span class="color" style="background:#b5aa9e"></span>
+        <span class="color" style="background:#7f756c"></span>
+        <span class="color" style="background:#222222"></span>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="countdown-section center">
+    <div class="container">
+
+      <div class="section-label" style="color:white">
+        Մեր հարսանիքին մնացել է
+      </div>
+
+      <h2 class="section-title">
+        Սպասում ենք Ձեզ
+      </h2>
+
+      <div class="countdown-grid">
+
+        <div class="count-box">
+          <span id="days" class="count-num">00</span>
+          <span class="count-label">օր</span>
+        </div>
+
+        <div class="count-box">
+          <span id="hours" class="count-num">00</span>
+          <span class="count-label">ժամ</span>
+        </div>
+
+        <div class="count-box">
+          <span id="minutes" class="count-num">00</span>
+          <span class="count-label">րոպե</span>
+        </div>
+
+        <div class="count-box">
+          <span id="seconds" class="count-num">00</span>
+          <span class="count-label">վայրկյան</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section class="rsvp">
+    <div class="container">
+
+      <div class="center">
+        <div class="section-label">Հարցաթերթիկ</div>
+        <h2 class="section-title">
+          Կկարողանա՞ք ներկա գտնվել
+        </h2>
+        <div class="decorative-line"></div>
+      </div>
+
+      <form id="rsvpForm">
+
+        <label for="guestName">
+          Անուն և ազգանուն
+        </label>
+
+        <input id="guestName" type="text" required>
+
+        <label for="attendance">
+          Կկարողանա՞ք ներկա գտնվել
+        </label>
+
+        <select id="attendance" required>
+          <option value="">Ընտրեք տարբերակը</option>
+          <option>Այո, սիրով կմասնակցեմ</option>
+          <option>Ցավոք, չեմ կարողանա մասնակցել</option>
+        </select>
+
+        <label for="guestCount">
+          Հյուրերի քանակը
+        </label>
+
+        <select id="guestCount" required>
+          <option value="">Ընտրեք քանակը</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+        </select>
+
+        <label for="guestNames">
+          Մասնակիցների անունները
+        </label>
+
+        <textarea id="guestNames"></textarea>
+
+        <button class="submit-btn" type="submit">
+          Ուղարկել պատասխանը
+        </button>
+
+      </form>
+
+    </div>
+  </section>
+
+  <footer>
+    <h3>Սիրով՝ Անի և Գուրգեն</h3>
+    <p>11 օգոստոսի 2026</p>
   </footer>
+
+  <script>
+    const cover = document.getElementById("cover");
+    const openBtn = document.getElementById("openBtn");
+    const music = document.getElementById("music");
+    const musicBtn = document.getElementById("musicBtn");
+
+    openBtn.onclick = function () {
+      cover.classList.add("hide");
+      document.body.classList.remove("locked");
+
+      setTimeout(function () {
+        cover.style.display = "none";
+      }, 700);
+
+      music.play().then(function () {
+        musicBtn.classList.add("playing");
+        musicBtn.textContent = "♫";
+      }).catch(function () {});
+    };
+
+    musicBtn.onclick = function () {
+      if (music.paused) {
+        music.play().then(function () {
+          musicBtn.classList.add("playing");
+          musicBtn.textContent = "♫";
+        }).catch(function () {});
+      } else {
+        music.pause();
+        musicBtn.classList.remove("playing");
+        musicBtn.textContent = "♪";
+      }
+    };
+
+    const weddingDate =
+      new Date("2026-08-11T14:30:00").getTime();
+
+    function updateCountdown() {
+      const distance = Math.max(
+        weddingDate - Date.now(),
+        0
+      );
+
+      document.getElementById("days").textContent =
+        String(
+          Math.floor(distance / 86400000)
+        ).padStart(2, "0");
+
+      document.getElementById("hours").textContent =
+        String(
+          Math.floor(
+            (distance % 86400000) / 3600000
+          )
+        ).padStart(2, "0");
+
+      document.getElementById("minutes").textContent =
+        String(
+          Math.floor(
+            (distance % 3600000) / 60000
+          )
+        ).padStart(2, "0");
+
+      document.getElementById("seconds").textContent =
+        String(
+          Math.floor(
+            (distance % 60000) / 1000
+          )
+        ).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    document.getElementById("rsvpForm").onsubmit =
+      function (event) {
+        event.preventDefault();
+
+        alert(
+          "Ձեր պատասխանը գրանցվեց։ WhatsApp համարը հետո կարող ենք ավելացնել։"
+        );
+      };
+  </script>
 
 </body>
 </html>
