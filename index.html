@@ -816,7 +816,141 @@
         font-size: 10px;
       }
     }
-  </style>
+  
+    /* ===== STABLE CALENDAR FIX ===== */
+    .calendar-section {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      min-height: auto !important;
+      padding: 90px 20px !important;
+      background: #ffffff !important;
+    }
+
+    .calendar-card,
+    .calendar-card.calendar-ready,
+    .calendar-card.calendar-ready.show-calendar {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+      filter: none !important;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .calendar-header,
+    .calendar-weekdays,
+    .calendar-days,
+    .calendar-days > span {
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .wedding-day::before {
+      content: "\2665\FE0E" !important;
+      color: #6B4636 !important;
+      opacity: 1 !important;
+      animation: heartPulseStable 1.15s ease-in-out infinite alternate !important;
+    }
+
+    @keyframes heartPulseStable {
+      from {
+        transform: translate(-50%, -48%) scale(.96) scaleX(1.12);
+      }
+      to {
+        transform: translate(-50%, -48%) scale(1.06) scaleX(1.12);
+      }
+    }
+
+
+    /* ===== FULL FINAL PHOTO FIX ===== */
+    .final-photo-section {
+      padding: 0 !important;
+      background: #FCFAF7 !important;
+      text-align: center !important;
+      overflow: hidden;
+    }
+
+    .final-photo-image {
+      display: block !important;
+      width: auto !important;
+      max-width: 100% !important;
+      height: auto !important;
+      max-height: 82vh !important;
+      margin: 0 auto !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      background: #FCFAF7 !important;
+    }
+
+    @media (max-width: 700px) {
+      .final-photo-image {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+      }
+
+      .calendar-section {
+        padding: 70px 16px !important;
+      }
+    }
+
+
+    /* Force chocolate text-heart on iPhone/Android instead of a red emoji */
+    .wedding-day::before {
+      font-family: Georgia, "Times New Roman", serif !important;
+      font-variant-emoji: text !important;
+      -webkit-text-fill-color: #6B4636 !important;
+      color: #6B4636 !important;
+    }
+
+
+    /* ===== FORCE CALENDAR VISIBLE ON ALL DEVICES ===== */
+    .calendar-section,
+    .calendar-card,
+    .calendar-card.calendar-ready,
+    .calendar-card.show-calendar,
+    .calendar-card.calendar-ready.show-calendar,
+    .calendar-header,
+    .calendar-weekdays,
+    .calendar-days,
+    .calendar-days > span {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+      clip-path: none !important;
+      filter: none !important;
+    }
+
+    .calendar-weekdays,
+    .calendar-days {
+      display: grid !important;
+    }
+
+    .calendar-card {
+      max-width: 620px !important;
+      margin: 0 auto !important;
+    }
+
+    .calendar-section {
+      min-height: auto !important;
+      padding: 80px 16px !important;
+      background: #ffffff !important;
+    }
+
+    .wedding-day {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      position: relative !important;
+      overflow: visible !important;
+    }
+
+</style>
 </head>
 
 <body class="locked">
@@ -1234,35 +1368,8 @@
       event.preventDefault();
       alert("Ձեր պատասխանը գրանցվեց։");
     };
+    // Calendar is intentionally always visible; only the heart uses CSS animation.
 
-    const calendarCard = document.querySelector(".calendar-card");
-
-    if (calendarCard) {
-      /* Եթե browser-ը չի աջակցում observer-ին, օրացույցը միևնույն է երևում է։ */
-      if ("IntersectionObserver" in window) {
-        calendarCard.classList.add("calendar-ready");
-
-        const calendarObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              calendarCard.classList.add("show-calendar");
-              calendarObserver.unobserve(calendarCard);
-            }
-          });
-        }, {
-          threshold: 0.12
-        });
-
-        calendarObserver.observe(calendarCard);
-
-        /* Ապահովագրություն՝ օրացույցը երբեք դատարկ չմնա։ */
-        setTimeout(function () {
-          calendarCard.classList.add("show-calendar");
-        }, 1800);
-      } else {
-        calendarCard.classList.add("show-calendar");
-      }
-    }
   </script>
 
 </body>
