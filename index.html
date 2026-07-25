@@ -16,15 +16,15 @@
 
   <style>
     :root {
-      --paper: #f6f0ec;
-      --cream: #eadfd8;
-      --text: #2c2724;
-      --accent: #c6a995;
-      --accent-dark: #9b7667;
-      --white: #ffffff;
-      --line: #d8c7bc;
-      --heart: #cf7f7a;
-      --rose: #d8b2aa;
+      --paper: #FCFAF7;
+      --cream: #F6EFE8;
+      --text: #3F332D;
+      --accent: #D8C2AF;
+      --accent-dark: #9A7665;
+      --white: #FFFFFF;
+      --line: #E9DED4;
+      --heart: #B86F68;
+      --rose: #E3C7BD;
     }
 
     * {
@@ -258,7 +258,7 @@
     /* INVITATION */
 
     .invitation {
-      background: white;
+      background: var(--white);
     }
 
     .invitation p {
@@ -281,7 +281,7 @@
     /* CALENDAR */
 
     .calendar-section {
-      background: white;
+      background: var(--white);
     }
 
     .calendar-card {
@@ -361,17 +361,140 @@
       font-weight: 500;
     }
 
+
+    .calendar-card.show-calendar .wedding-day::before {
+      animation: heartReveal .75s cubic-bezier(.22,.8,.25,1) 1.05s both;
+    }
+
+    @keyframes heartReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(2px) scale(.65) scaleX(1.14);
+      }
+      70% {
+        opacity: 1;
+        transform: translateY(2px) scale(1.08) scaleX(1.14);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(2px) scale(1) scaleX(1.14);
+      }
+    }
+
     .calendar-card {
+      position: relative;
+      overflow: hidden;
       opacity: 0;
-      transform: translateY(38px) scale(.985);
+      transform: translateY(48px) scale(.96) rotateX(7deg);
+      transform-origin: center top;
+      filter: blur(5px);
       transition:
         opacity 1s cubic-bezier(.22,.8,.25,1),
-        transform 1s cubic-bezier(.22,.8,.25,1);
+        transform 1.15s cubic-bezier(.22,.8,.25,1),
+        filter 1s ease;
+    }
+
+    .calendar-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        115deg,
+        transparent 20%,
+        rgba(255,255,255,.75) 48%,
+        transparent 76%
+      );
+      transform: translateX(-130%);
+      pointer-events: none;
     }
 
     .calendar-card.show-calendar {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0) scale(1) rotateX(0);
+      filter: blur(0);
+    }
+
+    .calendar-card.show-calendar::after {
+      animation: calendarShine 1.35s ease .25s both;
+    }
+
+    .calendar-header,
+    .calendar-weekdays,
+    .calendar-days > span {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    .calendar-card.show-calendar .calendar-header {
+      animation: calendarItemReveal .65s ease .18s forwards;
+    }
+
+    .calendar-card.show-calendar .calendar-weekdays {
+      animation: calendarItemReveal .65s ease .34s forwards;
+    }
+
+    .calendar-card.show-calendar .calendar-days > span {
+      animation: calendarDateReveal .48s ease forwards;
+    }
+
+    .calendar-card.show-calendar .calendar-days > span:nth-child(1)  { animation-delay: .42s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(2)  { animation-delay: .44s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(3)  { animation-delay: .46s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(4)  { animation-delay: .48s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(5)  { animation-delay: .50s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(6)  { animation-delay: .52s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(7)  { animation-delay: .54s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(8)  { animation-delay: .56s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(9)  { animation-delay: .58s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(10) { animation-delay: .60s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(11) { animation-delay: .62s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(12) { animation-delay: .64s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(13) { animation-delay: .66s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(14) { animation-delay: .68s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(15) { animation-delay: .70s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(16) { animation-delay: .72s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(17) { animation-delay: .74s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(18) { animation-delay: .76s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(19) { animation-delay: .78s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(20) { animation-delay: .80s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(21) { animation-delay: .82s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(22) { animation-delay: .84s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(23) { animation-delay: .86s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(24) { animation-delay: .88s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(25) { animation-delay: .90s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(26) { animation-delay: .92s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(27) { animation-delay: .94s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(28) { animation-delay: .96s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(29) { animation-delay: .98s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(30) { animation-delay: 1s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(31) { animation-delay: 1.02s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(32) { animation-delay: 1.04s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(33) { animation-delay: 1.06s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(34) { animation-delay: 1.08s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(35) { animation-delay: 1.10s; }
+    .calendar-card.show-calendar .calendar-days > span:nth-child(36) { animation-delay: 1.12s; }
+
+    @keyframes calendarItemReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes calendarDateReveal {
+      from {
+        opacity: 0;
+        transform: translateY(14px) scale(.92);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes calendarShine {
+      from { transform: translateX(-130%); }
+      to   { transform: translateX(130%); }
     }
 
     /* PROGRAM */
@@ -594,7 +717,7 @@
     /* RSVP */
 
     .rsvp {
-      background: white;
+      background: var(--white);
     }
 
     form {
@@ -638,54 +761,38 @@
     }
 
     .final-photo-section {
-      min-height: 72vh;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 70px 20px;
+      background: var(--paper);
+      padding: 0;
       text-align: center;
-      color: white;
+    }
+
+    .final-photo-image {
+      width: 100%;
+      min-height: 78vh;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,.04), rgba(0,0,0,.55)),
-        url("./photo4.jpg") center / cover no-repeat;
+        linear-gradient(rgba(0,0,0,0.02), rgba(0,0,0,0.08)),
+        url("./photo5.jpg") center / cover no-repeat;
     }
 
     .final-photo-content {
-      max-width: 620px;
-      padding: 30px 24px;
-      text-shadow: 0 3px 18px rgba(0,0,0,.45);
+      padding: 34px 20px 42px;
+      background: #FCFAF7;
+      color: #5F463A;
     }
 
     .final-photo-content h2 {
-      font-size: clamp(38px, 8vw, 64px);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 300;
+      letter-spacing: 3px;
     }
 
-    .final-photo-content p {
-      font-family: "Noto Serif Armenian", serif;
-      font-size: 18px;
-      letter-spacing: 1px;
+    .final-photo-content h1 {
+      font-size: clamp(40px, 8vw, 64px);
+      font-weight: 400;
+      line-height: 1.2;
     }
 
-    footer {
-      padding: 70px 20px 78px;
-      text-align: center;
-      background: #f2e8e2;
-    }
-
-    footer h3 {
-      margin-bottom: 14px;
-      font-size: clamp(32px, 7vw, 52px);
-      line-height: 1.35;
-      color: #3d302b;
-    }
-
-    footer p {
-      font-family: "Noto Serif Armenian", serif;
-      font-size: 18px;
-      letter-spacing: 2px;
-      color: var(--accent-dark);
-    }
 
     @media (max-width: 680px) {
       section {
@@ -1116,15 +1223,10 @@
 
   <section class="final-photo-section">
     <div class="final-photo-content">
-      <h2>Սիրով՝ Անի և Գուրգեն</h2>
-      <p>Շնորհակալ ենք, որ այս օրը մեզ հետ եք</p>
+      <h2>Սիրով</h2>
+      <h1>Անի &amp; Գուրգեն</h1>
     </div>
   </section>
-
-  <footer>
-    <h3>Անի և Գուրգեն</h3>
-    <p>11 օգոստոսի 2026</p>
-  </footer>
 
   <script>
     const cover = document.getElementById("cover");
