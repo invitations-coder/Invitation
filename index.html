@@ -347,7 +347,7 @@
     }
 
     .wedding-day::before {
-      content: "♥";
+      content: "";
       position: absolute;
       left: 50%;
       top: 50%;
@@ -850,7 +850,7 @@
     }
 
     .wedding-day::before {
-      content: "\2665\FE0E" !important;
+      content: "" !important;
       color: #6B4636 !important;
       opacity: 1 !important;
       animation: heartPulseStable 1.15s ease-in-out infinite alternate !important;
@@ -948,6 +948,255 @@
       justify-content: center !important;
       position: relative !important;
       overflow: visible !important;
+    }
+
+
+    /* ===== FINAL MOBILE-SAFE CALENDAR ANIMATION ===== */
+
+    /* The calendar itself stays visible; only its contents animate on entry. */
+    .calendar-card {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      clip-path: none !important;
+    }
+
+    .calendar-header,
+    .calendar-weekdays,
+    .calendar-days > span {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .calendar-card.calendar-animate .calendar-header {
+      animation: calFadeUp .65s ease .05s forwards;
+    }
+
+    .calendar-card.calendar-animate .calendar-weekdays {
+      animation: calFadeUp .65s ease .22s forwards;
+    }
+
+    .calendar-card.calendar-animate .calendar-days > span {
+      animation: calNumberIn .42s cubic-bezier(.16, 1, .3, 1) forwards;
+    }
+
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(1)  { animation-delay: .38s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(2)  { animation-delay: .42s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(3)  { animation-delay: .46s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(4)  { animation-delay: .50s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(5)  { animation-delay: .54s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(6)  { animation-delay: .58s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(7)  { animation-delay: .62s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(8)  { animation-delay: .66s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(9)  { animation-delay: .70s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(10) { animation-delay: .74s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(11) { animation-delay: .78s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(12) { animation-delay: .82s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(13) { animation-delay: .86s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(14) { animation-delay: .90s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(15) { animation-delay: .94s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(16) { animation-delay: .98s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(17) { animation-delay: 1.02s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(18) { animation-delay: 1.06s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(19) { animation-delay: 1.10s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(20) { animation-delay: 1.14s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(21) { animation-delay: 1.18s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(22) { animation-delay: 1.22s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(23) { animation-delay: 1.26s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(24) { animation-delay: 1.30s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(25) { animation-delay: 1.34s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(26) { animation-delay: 1.38s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(27) { animation-delay: 1.42s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(28) { animation-delay: 1.46s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(29) { animation-delay: 1.50s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(30) { animation-delay: 1.54s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(31) { animation-delay: 1.58s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(32) { animation-delay: 1.62s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(33) { animation-delay: 1.66s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(34) { animation-delay: 1.70s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(35) { animation-delay: 1.74s; }
+    .calendar-card.calendar-animate .calendar-days > span:nth-child(36) { animation-delay: 1.78s; }
+
+    /* Mobile-safe chocolate heart drawn as an SVG background, never as emoji. */
+    .wedding-day {
+      position: relative !important;
+      isolation: isolate;
+      overflow: visible !important;
+    }
+
+    .wedding-day::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      width: 62px !important;
+      height: 56px !important;
+      z-index: 0 !important;
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(.45);
+      transform-origin: center;
+      background: center / contain no-repeat
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 90'%3E%3Cpath fill='%236B4636' d='M50 86C44 79 7 56 7 29C7 12 20 2 35 2C44 2 50 8 50 8C50 8 56 2 65 2C80 2 93 12 93 29C93 56 56 79 50 86Z'/%3E%3C/svg%3E") !important;
+      color: transparent !important;
+      -webkit-text-fill-color: transparent !important;
+      text-shadow: 0 6px 18px rgba(107,70,54,.20);
+      pointer-events: none;
+    }
+
+    .wedding-day strong {
+      position: relative;
+      z-index: 1;
+      color: #fff !important;
+    }
+
+    .calendar-card.calendar-animate .wedding-day::before {
+      animation: calHeartPop .9s cubic-bezier(.16, 1, .3, 1) 1.88s forwards !important;
+    }
+
+    @keyframes calFadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes calNumberIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(.94);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes calHeartPop {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(.38);
+      }
+      62% {
+        opacity: 1;
+        transform: translate(-50%, -48%) scale(1.13);
+      }
+      82% {
+        transform: translate(-50%, -48%) scale(.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -48%) scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .calendar-header,
+      .calendar-weekdays,
+      .calendar-days > span,
+      .wedding-day::before {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+      .wedding-day::before {
+        transform: translate(-50%, -48%) !important;
+      }
+    }
+
+
+    /* ===== iPHONE-SAFE CHOCOLATE HEARTS =====
+       Hearts are drawn only with CSS gradients — no emoji or font glyphs. */
+
+    .wedding-day::before {
+      content: "" !important;
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      width: 64px !important;
+      height: 58px !important;
+      z-index: 0 !important;
+      opacity: 0;
+      color: transparent !important;
+      -webkit-text-fill-color: transparent !important;
+      font-size: 0 !important;
+      line-height: 0 !important;
+      background:
+        radial-gradient(circle at 31% 32%, #6B4636 0 31%, transparent 32%),
+        radial-gradient(circle at 69% 32%, #6B4636 0 31%, transparent 32%),
+        linear-gradient(45deg, transparent 29%, #6B4636 30% 70%, transparent 71%) !important;
+      background-repeat: no-repeat !important;
+      transform: translate(-50%, -48%) scale(.4);
+      transform-origin: center;
+      filter: drop-shadow(0 6px 9px rgba(107, 70, 54, .18));
+      pointer-events: none;
+    }
+
+    .calendar-card.calendar-animate .wedding-day::before {
+      animation: iphoneSafeHeartPop .9s cubic-bezier(.16, 1, .3, 1) 1.88s forwards !important;
+    }
+
+    .message-heart {
+      display: inline-block !important;
+      width: 22px;
+      height: 20px;
+      margin-left: 7px;
+      vertical-align: -3px;
+      font-size: 0 !important;
+      color: transparent !important;
+      -webkit-text-fill-color: transparent !important;
+      background:
+        radial-gradient(circle at 31% 32%, #6B4636 0 31%, transparent 32%),
+        radial-gradient(circle at 69% 32%, #6B4636 0 31%, transparent 32%),
+        linear-gradient(45deg, transparent 29%, #6B4636 30% 70%, transparent 71%) !important;
+      background-repeat: no-repeat !important;
+      filter: drop-shadow(0 3px 5px rgba(107, 70, 54, .16));
+    }
+
+    @keyframes iphoneSafeHeartPop {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(.35);
+      }
+      62% {
+        opacity: 1;
+        transform: translate(-50%, -48%) scale(1.14);
+      }
+      82% {
+        transform: translate(-50%, -48%) scale(.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -48%) scale(1);
+      }
+    }
+
+    /* Dates reveal only when the calendar enters the viewport. */
+    .calendar-header,
+    .calendar-weekdays,
+    .calendar-days > span {
+      opacity: 0 !important;
+      transform: translateY(12px) !important;
+    }
+
+    .calendar-card.calendar-animate .calendar-header,
+    .calendar-card.calendar-animate .calendar-weekdays,
+    .calendar-card.calendar-animate .calendar-days > span {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .calendar-header,
+      .calendar-weekdays,
+      .calendar-days > span {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .wedding-day::before {
+        opacity: 1 !important;
+        transform: translate(-50%, -48%) !important;
+      }
     }
 
 </style>
@@ -1211,7 +1460,7 @@
 
       <p>
         Թող այս օրը լի լինի միայն ուրախությամբ և սիրով
-        <span class="message-heart">♥</span>
+        <span class="message-heart" aria-hidden="true"></span>
       </p>
 
     </div>
@@ -1370,7 +1619,41 @@
     };
     // Calendar is intentionally always visible; only the heart uses CSS animation.
 
-  </script>
+  
+    const finalCalendarCard = document.querySelector(".calendar-card");
+
+    if (finalCalendarCard) {
+      let calendarPlayed = false;
+
+      const playCalendarAnimation = function () {
+        if (calendarPlayed) return;
+        calendarPlayed = true;
+        finalCalendarCard.classList.add("calendar-animate");
+      };
+
+      if ("IntersectionObserver" in window) {
+        const finalCalendarObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              playCalendarAnimation();
+              finalCalendarObserver.disconnect();
+            }
+          });
+        }, {
+          threshold: 0.28,
+          rootMargin: "0px 0px -8% 0px"
+        });
+
+        finalCalendarObserver.observe(finalCalendarCard);
+      } else {
+        playCalendarAnimation();
+      }
+
+      /* Safety fallback so the calendar can never remain invisible. */
+      setTimeout(playCalendarAnimation, 5000);
+    }
+
+</script>
 
 </body>
 </html>
