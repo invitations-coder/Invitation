@@ -633,52 +633,6 @@
       font-size: 12px;
     }
 
-    /* RSVP */
-
-    .rsvp {
-      background: white;
-    }
-
-    form {
-      max-width: 600px;
-      margin: 38px auto 0;
-    }
-
-    label {
-      display: block;
-      margin: 22px 0 8px;
-      font-family: "Noto Serif Armenian", serif;
-    }
-
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 14px 4px;
-      border: none;
-      border-bottom: 1px solid #777;
-      background: transparent;
-      outline: none;
-      font: inherit;
-    }
-
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .submit-btn {
-      width: 100%;
-      margin-top: 28px;
-      padding: 16px 20px;
-      border: none;
-      border-radius: 36px;
-      background: var(--accent);
-      color: #231f1c;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
     .final-photo-section {
       padding: 0;
       background: #FCFAF7;
@@ -1790,7 +1744,7 @@
           </div>
 
           <div class="program-info">
-            <strong class="program-time">17։30</strong>
+            <strong class="program-time">17։00</strong>
             <h3>Հյուրերի դիմավորում</h3>
             <p>Safari Hall, Չարենցավան</p>
           </div>
@@ -1811,7 +1765,7 @@
           </div>
 
           <div class="program-info">
-            <strong class="program-time">18։00</strong>
+            <strong class="program-time">17։30</strong>
             <h3>Հարսանյաց հանդես</h3>
             <p>Սիրով սպասում ենք միասին նշելու մեր օրը</p>
           </div>
@@ -1926,51 +1880,6 @@
     </div>
   </section>
 
-  <section class="rsvp">
-    <div class="container">
-
-      <div class="center">
-        <div class="section-label">Հարցաթերթիկ</div>
-        <h2 class="section-title">Կկարողանա՞ք ներկա գտնվել</h2>
-        <div class="decorative-line"></div>
-      </div>
-
-      <form id="rsvpForm">
-
-        <label for="guestName">Անուն և ազգանուն</label>
-        <input id="guestName" type="text" required>
-
-        <label for="attendance">Կկարողանա՞ք ներկա գտնվել</label>
-        <select id="attendance" required>
-          <option value="">Ընտրեք տարբերակը</option>
-          <option>Այո, սիրով կմասնակցեմ</option>
-          <option>Ցավոք, չեմ կարողանա մասնակցել</option>
-        </select>
-
-        <label for="guestCount">Հյուրերի քանակը</label>
-        <select id="guestCount" required>
-          <option value="">Ընտրեք քանակը</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-        </select>
-
-        <label for="invitedBy">Ո՞ւմ կողմից եք հրավիրված</label>
-        <select id="invitedBy" required>
-          <option value="">Ընտրեք տարբերակը</option>
-          <option value="Անի">Անի</option>
-          <option value="Գուրգեն">Գուրգեն</option>
-        </select>
-
-        <button class="submit-btn" type="submit">
-          Ուղարկել պատասխանը
-        </button>
-
-      </form>
-    </div>
-  </section>
-
   <section class="final-photo-section">
     <img
       class="final-photo-image"
@@ -2039,10 +1948,6 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    document.getElementById("rsvpForm").onsubmit = function (event) {
-      event.preventDefault();
-      alert("Ձեր պատասխանը գրանցվեց։");
-    };
     // Calendar is intentionally always visible; only the heart uses CSS animation.
 
   
